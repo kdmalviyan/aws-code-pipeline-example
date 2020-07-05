@@ -20,9 +20,9 @@ phases:
       - echo Build started on `date`
       - echo Compiling the Node.js code
       - ng build
-      - ls $CODEBUILD_SRC_DIR
       - zip -r juniro-backend-api.zip $CODEBUILD_SRC_DIR/dist/
-      - aws s3 sync juniro-backend-api.zip s3://juniro-backend-api-zip/
+      - ls $CODEBUILD_SRC_DIR
+      - aws s3 sync $CODEBUILD_SRC_DIR/juniro-backend-api.zip s3://juniro-backend-api-zip/
       - aws s3 sync $CODEBUILD_SRC_DIR/dist/**/* s3://juniro-backend-api-zip/
       #- mocha test.js
   post_build:
