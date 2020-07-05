@@ -22,8 +22,9 @@ phases:
       - ng build
       - zip -r juniro-backend-api.zip $CODEBUILD_SRC_DIR/dist/
       - ls $CODEBUILD_SRC_DIR
-      - aws s3 sync $CODEBUILD_SRC_DIR/juniro-backend-api.zip s3://juniro-backend-api-zip/
-      - aws s3 sync $CODEBUILD_SRC_DIR/dist/**/* s3://juniro-backend-api-zip/
+      - chmod -R 777 $CODEBUILD_SRC_DIR/*
+      - aws s3 sync juniro-backend-api.zip s3://juniro-backend-api-zip
+      - aws s3 sync $CODEBUILD_SRC_DIR/dist/**/* s3://juniro-backend-api
       #- mocha test.js
   post_build:
     commands:
