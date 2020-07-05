@@ -20,7 +20,7 @@ phases:
       - echo Build started on `date`
       - echo Compiling the Node.js code
       - ng build
-      - ls
+      - ls $CODEBUILD_SRC_DIR
       #- mocha test.js
   post_build:
     commands:
@@ -34,4 +34,4 @@ cache:
     - 'node_modules/**/*'
 artifacts:
   files:
-    - 'dist/*'
+    - $CODEBUILD_SRC_DIR/dist/*
