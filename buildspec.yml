@@ -13,13 +13,13 @@ phases:
       - echo Installing source NPM dependencies...
       - npm install
       - npm install unit.js
-      - ls
       - apt install zip unzip
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
       - ng build
+      - ls
       #- mocha test.js
   post_build:
     commands:
