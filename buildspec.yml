@@ -34,4 +34,4 @@ cache:
     - 'node_modules/**/*'
 artifacts:
   files:
-    - $CODEBUILD_SRC_DIR/dist/*
+    - $CODEBUILD_SRC_DIR/dist/**/*
