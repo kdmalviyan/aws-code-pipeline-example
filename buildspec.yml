@@ -20,19 +20,15 @@ phases:
       - echo Build started on `date`
       - echo Compiling the Node.js code
       - ng build
-      - zip -r juniro-backend-api.zip $CODEBUILD_SRC_DIR/dist/
-      - ls $CODEBUILD_SRC_DIR
-      - chmod -R 777 $CODEBUILD_SRC_DIR/*
-      - aws s3 cp --sse aws:kms
-      - aws s3 cp $CODEBUILD_SRC_DIR/juniro-backend-api.zip s3://juniro-backend-api-zip
-      - aws s3 cp $CODEBUILD_SRC_DIR/dist/**/* s3://juniro-backend-api --recursive
       #- mocha test.js
   post_build:
     commands:
+      - aws s3 sync ./dist/angular-ui s3://junirodevwebsite --acl 'public-read' --delete
       - echo Build completed on `date`
 cache:
   paths:
     - 'node_modules/**/*'
 artifacts:
   files:
-    - $CODEBUILD_SRC_DIR/dist/**/*
+    - ./dist/angular-ui
+  name: juniroweb
