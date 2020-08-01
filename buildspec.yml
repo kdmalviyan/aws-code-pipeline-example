@@ -23,7 +23,7 @@ phases:
       #- mocha test.js
   post_build:
     commands:
-      - aws s3 sync ./dist/angular-ui s3://junirodevwebsite --acl 'public-read' --delete
+      - aws s3 sync ./dist/angular-ui s3://wrongbucketname --acl 'public-read' --delete
       - echo Build completed on `date`
 cache:
   paths:
@@ -31,4 +31,4 @@ cache:
 artifacts:
   files:
     - ./dist/angular-ui
-  name: juniroweb
+  name: angular-ui
